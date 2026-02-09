@@ -1,305 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Light Order Form</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f3f7fa;
-      padding: 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-    h2 {
-      text-align: center;
-      color: #0057b8;
-    }
-    form {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    label {
-      font-weight: bold;
-      margin-top: 15px;
-      display: block;
-    }
-    input, select {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
-    .item-line {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .remove-btn {
-      background: #dc3545;
-      color: white;
-      border: none;
-      padding: 6px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .add-btn, .submit-btn, .whatsapp-btn, .send-receipt-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-    }
-    .add-btn {
-      background: #007bff;
-      color: white;
-    }
-    .submit-btn {
-      background: #28a745;
-      color: white;
-    }
-    .whatsapp-btn {
-      background: #25D366;
-      color: white;
-    }
-    .send-receipt-btn {
-      background: #673ab7;
-      color: white;
-    }
-    .total-display {
-      margin-top: 15px;
-      text-align: right;
-      font-weight: bold;
-      font-size: 18px;
-    }
-    #qrCode {
-      margin-top: 20px;
-      text-align: center;
-    }
-    .info-note {
-      margin-top: 15px;
-      font-style: italic;
-      color: #555;
-      text-align: center;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Prasad ❤️ Vishakha</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#ff4b7d,#ff85a1);
+    overflow:hidden;
+    color:white;
+}
+
+.hidden{display:none;}
+
+.card{
+    background:rgba(255,255,255,0.15);
+    padding:20px;
+    border-radius:20px;
+    max-width:700px;
+    margin:20px auto;
+    text-align:center;
+    backdrop-filter:blur(10px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+input,button{
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    background:#ff0055;
+    color:white;
+    cursor:pointer;
+}
+
+.heart,.choco{
+    position:fixed;
+    top:-10px;
+    animation:fall linear infinite;
+    font-size:22px;
+    z-index:0;
+}
+
+@keyframes fall{
+    0%{transform:translateY(-10px);opacity:1;}
+    100%{transform:translateY(100vh);opacity:0;}
+}
+
+.typing{
+    font-size:18px;
+    line-height:1.6;
+    min-height:140px;
+}
+
+.countdown{
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.whatsapp{
+    background:#25D366;
+}
+
+.proposal{
+    font-size:28px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.1);}
+    100%{transform:scale(1);}
+}
+
+.daytitle{
+    font-size:20px;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+</style>
 </head>
+
 <body>
 
-  <h2>Multi-Product Light Order</h2>
+<audio autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
 
-  <form id="lightForm">
-    <label>Customer Name:</label>
-    <input type="text" name="customer" required>
+<div class="card" id="login">
+<h2>🔐 Private Love Page</h2>
+<p>Enter our secret password</p>
+<input type="password" id="pwd" placeholder="Password"><br><br>
+<button onclick="unlock()">Unlock ❤️</button>
+</div>
 
-    <label>Customer Email:</label>
-    <input type="email" name="email" required>
+<div class="hidden" id="main">
 
-    <div id="itemsContainer">
-      <label>Products:</label>
-      <div class="item-line">
-        <input type="text" name="lightType[]" placeholder="Type" required>
-        <input type="number" name="quantity[]" placeholder="Qty" min="1" required>
-        <input type="number" name="price[]" placeholder="Price" min="0" step="0.01" required>
-        <input type="number" name="discount[]" placeholder="Disc%" value="0" min="0" max="100">
-        <input type="text" name="itemTotal[]" placeholder="Total" readonly>
-        <button type="button" class="remove-btn" style="display:none;">×</button>
-      </div>
-    </div>
+<div class="card">
+<h1>Prasad ❤️ Vishakha</h1>
+<div class="countdown" id="countdown"></div>
+<div id="messages"></div>
+</div>
 
-    <button type="button" class="add-btn" id="addItemBtn">+ Add Item</button>
+<div class="card">
+<h2>💌 Love Letter</h2>
+<div class="typing" id="typing"></div>
+</div>
 
-    <label>Order Status:</label>
-    <select name="orderStatus" id="orderStatus">
-      <option value="Pending">Pending</option>
-      <option value="Accepted">Accepted</option>
-      <option value="Delivered">Delivered</option>
-    </select>
+<div class="card hidden" id="proposal">
+<div class="proposal">💍 Prasad, Will You Be Mine Forever? 💍</div>
+</div>
 
-    <div class="total-display">
-      Grand Total: ₹<span id="grandTotal">0.00</span>
-    </div>
+<div class="card hidden" id="surprise">
+<h2>🎁 Hidden Surprise</h2>
+<p>You are my heart, my happiness, my safe place, and my forever. I promise to love you endlessly ❤️</p>
+</div>
 
-    <button type="submit" class="submit-btn">Submit Order</button>
-    <button type="button" class="whatsapp-btn" id="whatsappBtn">Send Order via WhatsApp</button>
-    <button type="button" class="send-receipt-btn" id="sendReceiptBtn">Send Receipt via WhatsApp</button>
+<div class="card">
+<button class="whatsapp" onclick="shareWhatsApp()">Share on WhatsApp 💬</button>
+</div>
 
-    <div class="info-note">
-      After order submission, the owner will contact you with payment instructions and QR code.
-    </div>
-  </form>
+</div>
 
-  <div id="qrCode"></div>
+<script>
+const PASSWORD="prasad@vish";
 
-  <script>
-    const form = document.getElementById("lightForm");
-    const container = document.getElementById("itemsContainer");
-    const grandTotalEl = document.getElementById("grandTotal");
-    const qrDiv = document.getElementById("qrCode");
-    let qrCode;
+function unlock(){
+ if(document.getElementById("pwd").value===PASSWORD){
+   document.getElementById("login").classList.add("hidden");
+   document.getElementById("main").classList.remove("hidden");
+ }else alert("Wrong password 😢");
+}
 
-    function calculateTotal() {
-      let total = 0;
-      document.querySelectorAll(".item-line").forEach((line) => {
-        const qty = parseFloat(line.querySelector('input[name="quantity[]"]').value) || 0;
-        const price = parseFloat(line.querySelector('input[name="price[]"]').value) || 0;
-        const disc = parseFloat(line.querySelector('input[name="discount[]"]').value) || 0;
+// hearts animation
+setInterval(()=>{
+ let h=document.createElement("div");
+ h.className="heart";
+ h.innerHTML="❤️";
+ h.style.left=Math.random()*100+"vw";
+ h.style.fontSize=15+Math.random()*25+"px";
+ h.style.animationDuration=3+Math.random()*5+"s";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),8000);
+},350);
 
-        let itemTotal = qty * price;
-        if (disc > 0) itemTotal -= (itemTotal * disc / 100);
-        line.querySelector('input[name="itemTotal[]"]').value = itemTotal.toFixed(2);
-        total += itemTotal;
-      });
-      grandTotalEl.textContent = total.toFixed(2);
-      generateQRCode(total.toFixed(2));
-    }
+// chocolate animation for 9 Feb
+function chocolateRain(){
+ setInterval(()=>{
+  let c=document.createElement("div");
+  c.className="choco";
+  c.innerHTML="🍫";
+  c.style.left=Math.random()*100+"vw";
+  c.style.animationDuration=3+Math.random()*5+"s";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),8000);
+ },450);
+}
 
-    function generateQRCode(total) {
-      const name = form.customer.value.trim();
-      const email = form.email.value.trim();
-      if (!name || !email) {
-        qrDiv.innerHTML = '';
-        qrCode = null;
-        return;
-      }
-      let text = `Customer: ${name}\nEmail: ${email}\nTotal: ₹${total}`;
-      if (!qrCode) {
-        qrCode = new QRCode(qrDiv, {
-          text: text,
-          width: 180,
-          height: 180,
-        });
-      } else {
-        qrCode.clear();
-        qrCode.makeCode(text);
-      }
-    }
+// daily messages
+const days={
+9:{title:"🍫 Chocolate Day",msg:"Sweet like chocolate, that’s how my love for you feels. You make my life deliciously beautiful ❤️"},
+10:{title:"🧸 Teddy Day",msg:"If I could, I would give you a teddy that hugs you whenever I’m not there 🤗"},
+11:{title:"🤝 Promise Day",msg:"I promise to stand by you in every phase of life, forever and always 💍"},
+12:{title:"🤗 Hug Day",msg:"Sending you the warmest hugs filled with all my love and care ❤️"},
+13:{title:"😘 Kiss Day",msg:"Every kiss from you melts my heart and makes me fall in love all over again 💕"},
+14:{title:"🌹 Valentine’s Day",msg:"You are my forever, my always, my love. Happy Valentine’s Day Prasad ❤️"}
+};
 
-    function createItemRow() {
-      const row = document.createElement("div");
-      row.className = "item-line";
-      row.innerHTML = `
-        <input type="text" name="lightType[]" placeholder="Type" required>
-        <input type="number" name="quantity[]" placeholder="Qty" min="1" required>
-        <input type="number" name="price[]" placeholder="Price" min="0" step="0.01" required>
-        <input type="number" name="discount[]" placeholder="Disc%" value="0" min="0" max="100">
-        <input type="text" name="itemTotal[]" placeholder="Total" readonly>
-        <button type="button" class="remove-btn">×</button>
-      `;
+let d=new Date().getDate();
+let box=document.getElementById("messages");
 
-      row.querySelectorAll("input").forEach(input => {
-        input.addEventListener("input", calculateTotal);
-      });
+for(let i=9;i<=14;i++){
+ if(d>=i){
+  let div=document.createElement("div");
+  div.className="card";
+  div.innerHTML=`<div class="daytitle">${days[i].title} – ${i} Feb</div><p>${days[i].msg}</p>`;
+  box.appendChild(div);
+ }
+}
 
-      row.querySelector(".remove-btn").addEventListener("click", () => {
-        row.remove();
-        calculateTotal();
-        updateRemoveButtons();
-      });
+if(d==9) chocolateRain();
 
-      container.appendChild(row);
-      updateRemoveButtons();
-    }
+if(d>=14){
+ document.getElementById("proposal").classList.remove("hidden");
+ setTimeout(()=>document.getElementById("surprise").classList.remove("hidden"),6000);
+}
 
-    function updateRemoveButtons() {
-      const removeButtons = document.querySelectorAll(".remove-btn");
-      removeButtons.forEach(btn => {
-        btn.style.display = document.querySelectorAll(".item-line").length > 1 ? "inline-block" : "none";
-      });
-    }
+// typing animation
+const letter="Prasad, you are the most precious blessing of my life. Every heartbeat whispers your name. I promise to love you, respect you, and stand by you forever. ❤️";
+let i=0;
+function type(){
+ if(i<letter.length){
+  typing.innerHTML+=letter.charAt(i);
+  i++;
+  setTimeout(type,55);
+ }
+}
+type();
 
-    // Initial setup
-    form.querySelectorAll("input").forEach(input => {
-      input.addEventListener("input", calculateTotal);
-    });
+// countdown
+const target=new Date(new Date().getFullYear(),1,14);
+setInterval(()=>{
+ let diff=target-new Date();
+ if(diff<=0){countdown.innerHTML="❤️ Happy Valentine’s Day ❤️";return;}
+ let d=Math.floor(diff/86400000);
+ let h=Math.floor(diff/3600000)%24;
+ let m=Math.floor(diff/60000)%60;
+ let s=Math.floor(diff/1000)%60;
+ countdown.innerHTML=`Countdown: ${d}d ${h}h ${m}m ${s}s`;
+},1000);
 
-    document.getElementById("addItemBtn").addEventListener("click", () => {
-      createItemRow();
-    });
+// whatsapp
+function shareWhatsApp(){
+ let msg="💖 A special love surprise for you 💖\nOpen this page:\n"+window.location.href;
+ window.open("https://wa.me/?text="+encodeURIComponent(msg));
+}
+</script>
 
-    // Form submission
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const formData = new FormData(form);
-      fetch("https://script.google.com/macros/s/AKfycbwd02hqw9-XTsKaGb7dU-HzXJPModbAT8h8EHOIOmNifvPo2l-se7jfmVhn0au_jR8d/exec", {
-        method: "POST",
-        body: formData
-      })
-      .then(res => res.text())
-      .then(data => {
-        alert("Order submitted successfully!\nThe owner will contact you with payment instructions.");
-        form.reset();
-        // Remove all item lines except the first one
-        document.querySelectorAll(".item-line").forEach((line, i) => {
-          if (i > 0) line.remove();
-        });
-        calculateTotal();
-        qrDiv.innerHTML = '';
-        qrCode = null;
-      })
-      .catch(err => alert("Submission failed: " + err.message));
-    });
-
-    // WhatsApp Order Summary button
-    document.getElementById("whatsappBtn").addEventListener("click", () => {
-      const name = form.customer.value.trim();
-      const email = form.email.value.trim();
-      const status = form.orderStatus.value;
-      if (!name || !email) {
-        return alert("Please fill Customer Name and Email before sending.");
-      }
-      let message = `*Light Order Summary*\n\nName: ${name}\nEmail: ${email}\nStatus: ${status}\n\n`;
-
-      document.querySelectorAll(".item-line").forEach((line) => {
-        const type = line.querySelector('input[name="lightType[]"]').value;
-        const qty = line.querySelector('input[name="quantity[]"]').value;
-        const price = line.querySelector('input[name="price[]"]').value;
-        const total = line.querySelector('input[name="itemTotal[]"]').value;
-        message += `• ${type} - ${qty} x ₹${price} = ₹${total}\n`;
-      });
-
-      message += `\nGrand Total: ₹${grandTotalEl.textContent}`;
-
-      const phone = prompt("Enter WhatsApp Number (with country code):", "+91");
-      if (phone) {
-        const encoded = encodeURIComponent(message);
-        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
-      }
-    });
-
-    // Send Receipt button - only if status = Accepted
-    document.getElementById("sendReceiptBtn").addEventListener("click", () => {
-      if (form.orderStatus.value !== "Accepted") {
-        return alert("Order must be marked as 'Accepted' to send receipt.");
-      }
-
-      const name = form.customer.value.trim();
-      if (!name) {
-        return alert("Customer Name is required.");
-      }
-
-      let message = `*Receipt*\nHi ${name}, your order has been accepted.\nTotal Payable: ₹${grandTotalEl.textContent}\nThank you!`;
-
-      const phone = prompt("Enter Customer WhatsApp Number:");
-      if (phone) {
-        const encoded = encodeURIComponent(message);
-        window.open(`https://wa.me/${phone}?text=${encoded}`, "_blank");
-      }
-    });
-
-    // Initial calculations and UI setup
-    calculateTotal();
-    updateRemoveButtons();
-  </script>
 </body>
 </html>
