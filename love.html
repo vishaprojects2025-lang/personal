@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Prasad ❤️ Vishakha</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#ff4b7d,#ff85a1);
+    overflow:hidden;
+    color:white;
+}
+
+.hidden{display:none;}
+
+.card{
+    background:rgba(255,255,255,0.15);
+    padding:20px;
+    border-radius:20px;
+    max-width:700px;
+    margin:20px auto;
+    text-align:center;
+    backdrop-filter:blur(10px);
+    box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+input,button{
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    background:#ff0055;
+    color:white;
+    cursor:pointer;
+}
+
+.heart,.choco{
+    position:fixed;
+    top:-10px;
+    animation:fall linear infinite;
+    font-size:22px;
+    z-index:0;
+}
+
+@keyframes fall{
+    0%{transform:translateY(-10px);opacity:1;}
+    100%{transform:translateY(100vh);opacity:0;}
+}
+
+.typing{
+    font-size:18px;
+    line-height:1.6;
+    min-height:140px;
+}
+
+.countdown{
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.whatsapp{
+    background:#25D366;
+}
+
+.proposal{
+    font-size:28px;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.1);}
+    100%{transform:scale(1);}
+}
+
+.daytitle{
+    font-size:20px;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<div class="card" id="login">
+<h2>🔐 Private Love Page</h2>
+<p>Enter our secret password</p>
+<input type="password" id="pwd" placeholder="Password"><br><br>
+<button onclick="unlock()">Unlock ❤️</button>
+</div>
+
+<div class="hidden" id="main">
+
+<div class="card">
+<h1>Prasad ❤️ Vishakha</h1>
+<div class="countdown" id="countdown"></div>
+<div id="messages"></div>
+</div>
+
+<div class="card">
+<h2>💌 Love Letter</h2>
+<div class="typing" id="typing"></div>
+</div>
+
+<div class="card hidden" id="proposal">
+<div class="proposal">💍 Prasad, Will You Be Mine Forever? 💍</div>
+</div>
+
+<div class="card hidden" id="surprise">
+<h2>🎁 Hidden Surprise</h2>
+<p>You are my heart, my happiness, my safe place, and my forever. I promise to love you endlessly ❤️</p>
+</div>
+
+<div class="card">
+<button class="whatsapp" onclick="shareWhatsApp()">Share on WhatsApp 💬</button>
+</div>
+
+</div>
+
+<script>
+const PASSWORD="prasad@vish";
+
+function unlock(){
+ if(document.getElementById("pwd").value===PASSWORD){
+   document.getElementById("login").classList.add("hidden");
+   document.getElementById("main").classList.remove("hidden");
+ }else alert("Wrong password 😢");
+}
+
+// hearts animation
+setInterval(()=>{
+ let h=document.createElement("div");
+ h.className="heart";
+ h.innerHTML="❤️";
+ h.style.left=Math.random()*100+"vw";
+ h.style.fontSize=15+Math.random()*25+"px";
+ h.style.animationDuration=3+Math.random()*5+"s";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),8000);
+},350);
+
+// chocolate animation for 9 Feb
+function chocolateRain(){
+ setInterval(()=>{
+  let c=document.createElement("div");
+  c.className="choco";
+  c.innerHTML="🍫";
+  c.style.left=Math.random()*100+"vw";
+  c.style.animationDuration=3+Math.random()*5+"s";
+  document.body.appendChild(c);
+  setTimeout(()=>c.remove(),8000);
+ },450);
+}
+
+// daily messages
+const days={
+9:{title:"🍫 Chocolate Day",msg:"Sweet like chocolate, that’s how my love for you feels. You make my life deliciously beautiful ❤️"},
+10:{title:"🧸 Teddy Day",msg:"If I could, I would give you a teddy that hugs you whenever I’m not there 🤗"},
+11:{title:"🤝 Promise Day",msg:"I promise to stand by you in every phase of life, forever and always 💍"},
+12:{title:"🤗 Hug Day",msg:"Sending you the warmest hugs filled with all my love and care ❤️"},
+13:{title:"😘 Kiss Day",msg:"Every kiss from you melts my heart and makes me fall in love all over again 💕"},
+14:{title:"🌹 Valentine’s Day",msg:"You are my forever, my always, my love. Happy Valentine’s Day Prasad ❤️"}
+};
+
+let d=new Date().getDate();
+let box=document.getElementById("messages");
+
+for(let i=9;i<=14;i++){
+ if(d>=i){
+  let div=document.createElement("div");
+  div.className="card";
+  div.innerHTML=`<div class="daytitle">${days[i].title} – ${i} Feb</div><p>${days[i].msg}</p>`;
+  box.appendChild(div);
+ }
+}
+
+if(d==9) chocolateRain();
+
+if(d>=14){
+ document.getElementById("proposal").classList.remove("hidden");
+ setTimeout(()=>document.getElementById("surprise").classList.remove("hidden"),6000);
+}
+
+// typing animation
+const letter="Prasad, you are the most precious blessing of my life. Every heartbeat whispers your name. I promise to love you, respect you, and stand by you forever. ❤️";
+let i=0;
+function type(){
+ if(i<letter.length){
+  typing.innerHTML+=letter.charAt(i);
+  i++;
+  setTimeout(type,55);
+ }
+}
+type();
+
+// countdown
+const target=new Date(new Date().getFullYear(),1,14);
+setInterval(()=>{
+ let diff=target-new Date();
+ if(diff<=0){countdown.innerHTML="❤️ Happy Valentine’s Day ❤️";return;}
+ let d=Math.floor(diff/86400000);
+ let h=Math.floor(diff/3600000)%24;
+ let m=Math.floor(diff/60000)%60;
+ let s=Math.floor(diff/1000)%60;
+ countdown.innerHTML=`Countdown: ${d}d ${h}h ${m}m ${s}s`;
+},1000);
+
+// whatsapp
+function shareWhatsApp(){
+ let msg="💖 A special love surprise for you 💖\nOpen this page:\n"+window.location.href;
+ window.open("https://wa.me/?text="+encodeURIComponent(msg));
+}
+</script>
+
+</body>
+</html>
