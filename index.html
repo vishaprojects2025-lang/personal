@@ -2,30 +2,104 @@
 <html>
 <head>
 <title>Biodata</title>
-<style>
-body{
-font-family: Arial;
-background:#f9f6ef;
-padding:40px;
+<script>
+var password = "1234";   // change your password here
+var userInput = prompt("Please enter password to view biodata:");
+
+if(userInput !== password){
+alert("Incorrect password");
+document.write("Access Denied");
 }
+</script>
+<style>
+
+body{
+font-family: "Segoe UI", Arial, sans-serif;
+background: linear-gradient(135deg,#fdf6e3,#f5e1c8);
+padding:40px;
+margin:0;
+}
+
+/* main card */
 .card{
-max-width:700px;
+max-width:750px;
 margin:auto;
 background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
+padding:35px;
+border-radius:15px;
+box-shadow:0 8px 25px rgba(0,0,0,0.15);
+border-top:8px solid #8b0000;
 }
+
+/* title */
 h1{
 text-align:center;
-color:#a67c00;
+color:#8b0000;
+font-size:28px;
+margin-bottom:30px;
+letter-spacing:2px;
 }
+
+/* section headings */
+h2{
+color:#8b0000;
+border-left:6px solid #d4af37;
+padding-left:10px;
+margin-bottom:15px;
+}
+
+/* sections */
 .section{
 margin-top:25px;
+padding:15px 20px;
+background:#fffaf3;
+border-radius:10px;
+box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
+
+/* labels */
 .label{
 font-weight:bold;
+color:#444;
 }
+
+/* text lines */
+p{
+padding:6px 0;
+margin:3px 0;
+font-size:15px;
+border-bottom:1px dashed #eee;
+}
+
+/* hover effect */
+.section:hover{
+transform:scale(1.01);
+transition:0.2s;
+box-shadow:0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* address styling */
+.section:last-child p{
+border-bottom:none;
+}
+
+/* mobile friendly */
+@media (max-width:600px){
+
+body{
+padding:20px;
+}
+
+.card{
+padding:20px;
+}
+
+h1{
+font-size:22px;
+}
+
+}
+
 </style>
 </head>
 
@@ -43,6 +117,7 @@ font-weight:bold;
 <p><span class="label">जन्म वेळ:</span> 10:45 PM</p>
 <p><span class="label">जन्म स्थळ:</span> सातारा</p>
 <p><span class="label">नवरस नाव:</span> युवराधनी </p>
+
 <p><span class="label">धर्म:</span> हिंदू</p>
 <p><span class="label">जात:</span> हिंदू-लोहार</p>
 <p><span class="label">कुलदैवत:</span> दक्खनचा राजा जोतिबा</p>
@@ -79,6 +154,9 @@ font-weight:bold;
 <p>49, यादोगोपाळ पेठ, काशीविश्वेश्वर मंदिर<br>
 ,यशवंत विश्व f-1<br>
 सातारा 415002</p>
+<p><span class="label">मोबाईल नंबर:</span> 
+<a href="tel:9876543210">9850796945</a>
+</p>
 
 </div>
 
@@ -86,4 +164,3 @@ font-weight:bold;
 
 </body>
 </html>
-
